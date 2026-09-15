@@ -1,38 +1,55 @@
 # Dự án Mô hình Xử lý Tiếng nói (Speech Processing)
 
-Dự án này triển khai các mô hình học sâu (Deep Learning) để thực hiện bài toán nhận dạng từ khóa (Keyword Spotting) trong âm thanh. 
+Dự án này triển khai các mô hình học sâu (Deep Learning) để thực hiện bài toán nhận dạng từ khóa (Keyword Spotting) trong âm thanh. Mã nguồn ban đầu dựa trên mô hình Honk (PyTorch).
 
-## Về Mô hình
-Các kiến trúc mô hình trong dự án được thiết kế để trích xuất đặc trưng từ file âm thanh và phân loại thành các lệnh giọng nói hoặc từ khóa cụ thể. Quá trình huấn luyện, đánh giá và tinh chỉnh mô hình được thể hiện chi tiết qua các notebook và mã nguồn đi kèm.
+## 1. Hướng dẫn Clone dự án
 
-## Hướng dẫn chạy Dự án (Server & Giao diện Demo)
+Để tải dự án này về máy của bạn, hãy mở Terminal (hoặc Command Prompt / PowerShell) và chạy các lệnh sau:
 
-Dự án bao gồm một **Server API** để xử lý mô hình và một **Giao diện (UI)** viết bằng Tkinter, cho phép thu âm trực tiếp qua microphone và hiển thị kết quả nhận diện.
+```bash
+# Clone kho lưu trữ về máy
+git clone https://github.com/PHamHuy-23/demo_speech_processing.git
 
-### 1. Kích hoạt môi trường
-Dự án đã có sẵn môi trường ảo (`.venv`). Khởi động môi trường này trước khi chạy code:
+# Di chuyển vào thư mục dự án
+cd demo_speech_processing
+```
+
+## 2. Hướng dẫn sử dụng Mô hình Huấn luyện sẵn (Pre-trained Models)
+
+Dự án đã đính kèm sẵn các file dữ liệu mô hình đã được huấn luyện thành công (bao gồm `model.pt`, `res8.pt`, `google-speech-dataset.pt`,...) nằm trong thư mục **`honk/model/`**. 
+
+Người dùng **không cần phải huấn luyện lại từ đầu** mà có thể dùng trực tiếp các file mô hình này để kiểm tra và nhận diện giọng nói.
+
+### Kích hoạt môi trường chạy
+Dự án yêu cầu cài đặt Python. Nếu bạn đang chạy trực tiếp từ mã nguồn đã tải, hãy kích hoạt môi trường ảo:
 ```bash
 # Trên Windows
 .venv\Scripts\activate
 ```
 
-### 2. Chạy Server (Backend)
-Server sẽ tải mô hình và lắng nghe các request âm thanh gửi tới. 
-Mở một terminal, kích hoạt `.venv` và chạy lệnh sau:
-```bash
-python honk/__main__.py
-```
-*(Lưu ý: Mặc định Server sẽ chạy ở địa chỉ `http://127.0.0.1:16888`)*
+### Chạy Server & Giao diện Demo
+1. **Chạy Server Backend:** Server sẽ tự động nạp các file mô hình `.pt` trong thư mục `honk/model/` để phân tích âm thanh.
+   ```bash
+   python honk/__main__.py
+   ```
+   *(Server mặc định chạy tại địa chỉ `http://127.0.0.1:16888`)*
 
-### 3. Chạy Giao diện Demo (UI)
-Sau khi Server đã chạy thành công, hãy mở **thêm một terminal khác** (cũng kích hoạt `.venv`), chạy script giao diện:
-```bash
-python honk/utils/speech_demo_tk.py
-```
-**Cách sử dụng:** 
-- Một cửa sổ giao diện sẽ hiện lên với danh sách các từ khóa dự án hỗ trợ (như *yes, no, up, down, stop, go...*).
-- Chương trình sẽ tự động thu âm từ microphone của bạn và gửi đến Server liên tục.
-- Bất cứ khi nào bạn đọc một từ khóa và mô hình nhận dạng được, từ đó trên màn hình giao diện sẽ được **nhấn sáng màu xanh lá cây**.
+2. **Chạy Giao diện UI (Tkinter):** Mở **thêm một terminal khác** (cũng nhớ kích hoạt `.venv`) và chạy:
+   ```bash
+   python honk/utils/speech_demo_tk.py
+   ```
+   Giao diện sẽ hiện lên, tự động thu âm từ microphone và bôi màu xanh lá cây vào các từ khóa (như *yes, no, up, down...*) khi mô hình nhận diện thành công giọng nói của bạn.
 
----
-**Tham khảo:** Để xem chi tiết quá trình cấu hình, huấn luyện từ đầu và kết quả đánh giá của mô hình, bạn có thể mở và chạy file `Kaggle_Honk_Training.ipynb`.
+## 3. Hướng dẫn xem / chạy Notebook Training (trên Kaggle)
+
+Nếu bạn muốn xem toàn bộ quy trình, kiến trúc mạng CNN, hoặc muốn tự tay huấn luyện (training) lại mô hình, dự án có đi kèm file **`Kaggle_Honk_Training.ipynb`**.
+
+**Đặc điểm nổi bật:**
+- Notebook này đã được **chỉnh sửa, sửa lỗi và tối ưu hóa để chạy thành công 100% trên nền tảng Kaggle** với cấu hình GPU mạnh.
+- Nó xử lý toàn bộ quá trình từ tải dataset, khởi tạo model (Res8, Res15...), huấn luyện và lưu ra trọng số (`.pt`).
+
+**Cách chạy Notebook trên Kaggle:**
+1. Đăng nhập vào [Kaggle](https://www.kaggle.com/) và tạo một Notebook mới.
+2. Chọn `File -> Import Notebook` và tải lên file `Kaggle_Honk_Training.ipynb` từ thư mục dự án của bạn.
+3. Trong menu bên phải (Settings), bật tính năng GPU (Accelerator -> GPU T4x2 hoặc P100).
+4. Chạy toàn bộ các cell (`Run All`) để xem quá trình đào tạo mô hình diễn ra.
