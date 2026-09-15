@@ -42,7 +42,7 @@ Dự án yêu cầu cài đặt Python. Nếu bạn đang chạy trực tiếp t
 
 ## 3. Hướng dẫn xem / chạy Notebook Training (trên Kaggle)
 
-Nếu bạn muốn xem toàn bộ quy trình, kiến trúc mạng CNN, hoặc muốn tự tay huấn luyện (training) lại mô hình, dự án có đi kèm file **`Kaggle_Honk_Training.ipynb`**.
+Nếu bạn muốn xem toàn bộ quy trình, kiến trúc mạng CNN, hoặc muốn tự tay huấn luyện (training) lại mô hình, dự án có đi kèm file **`notebook460ba02322.ipynb`**.
 
 **Đặc điểm nổi bật:**
 - Notebook này đã được **chỉnh sửa, sửa lỗi và tối ưu hóa để chạy thành công 100% trên nền tảng Kaggle** với cấu hình GPU mạnh.
@@ -50,6 +50,6 @@ Nếu bạn muốn xem toàn bộ quy trình, kiến trúc mạng CNN, hoặc mu
 
 **Cách chạy Notebook trên Kaggle:**
 1. Đăng nhập vào [Kaggle](https://www.kaggle.com/) và tạo một Notebook mới.
-2. Chọn `File -> Import Notebook` và tải lên file `Kaggle_Honk_Training.ipynb` từ thư mục dự án của bạn.
+2. Chọn `File -> Import Notebook` và tải lên file `notebook460ba02322.ipynb` từ thư mục dự án của bạn.
 3. Trong menu bên phải (Settings), bật tính năng GPU (Accelerator -> GPU T4x2 hoặc P100).
 4. Chạy toàn bộ các cell (`Run All`) để xem quá trình đào tạo mô hình diễn ra.
