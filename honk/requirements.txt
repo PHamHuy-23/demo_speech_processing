@@ -1,0 +1,13 @@
+chainmap
+cherrypy
+librosa
+Flask
+numpy
+Pillow
+PyAudio
+PyOpenGL
+PyOpenGL_accelerate
+pyttsx3
+requests
+SpeechRecognition
+git+https://github.com/daemon/pytorch-pcen
